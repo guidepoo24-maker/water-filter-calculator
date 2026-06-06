@@ -6,102 +6,374 @@
 <meta name="theme-color" content="#0ea5e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Water Filter Calculator</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>💧</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--p:#0ea5e9;--pd:#0284c7;--pl:#e0f2fe;--s:#6366f1;--ok:#22c55e;--w:#f59e0b;--er:#ef4444;--dk:#1e293b;--gr:#64748b;--lt:#f1f5f9}
-body{font-family:'Kanit',sans-serif;background:linear-gradient(135deg,#e0f2fe,#f0f9ff 50%,#e8eaf6);min-height:100vh;color:var(--dk);max-width:540px;margin:0 auto;padding-bottom:80px}
-
-/* Header */
-.hdr{background:linear-gradient(135deg,var(--p),var(--s));color:#fff;padding:18px 16px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(14,165,233,.3)}
-.hdr h1{font-size:1.25rem;font-weight:600}
-.hdr p{font-size:.75rem;opacity:.85;margin-top:2px;font-weight:300}
-
-/* Tabs */
+body{font-family:'Kanit',sans-serif;background:linear-gradient(135deg,#e0f2fe,#f0f9ff,#e8eaf6);min-height:100vh;max-width:540px;margin:0 auto;color:#1e293b;padding-bottom:20px}
+.hdr{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(14,165,233,.3)}
+.hdr h1{font-size:1.3rem}.hdr p{font-size:.75rem;opacity:.85;margin-top:3px}
 .tabs{display:flex;background:#fff;margin:12px;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.06);overflow:hidden}
-.tbtn{flex:1;padding:10px 2px;border:none;background:none;font-family:'Kanit',sans-serif;font-size:.68rem;font-weight:500;color:var(--gr);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.3s}
-.tbtn i{font-size:.95rem}
-.tbtn.on{background:linear-gradient(135deg,var(--p),var(--s));color:#fff}
-
-/* Tab Pages */
-.pg{display:none;padding:0 12px;animation:fadeIn .3s}
-.pg.on{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-
-/* Card */
+.tbtn{flex:1;padding:10px 2px;border:none;background:none;font-family:'Kanit',sans-serif;font-size:.68rem;font-weight:500;color:#64748b;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.3s}
+.tbtn i{font-size:1rem}
+.tbtn.on{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff}
+.pg{display:none;padding:0 12px;animation:fi .3s}.pg.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
 .cd{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.ct{font-size:.92rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--pd)}
-
-/* Form */
+.ct{font-size:.92rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:#0284c7}
 .fg{margin-bottom:14px}
-.fg label{display:block;font-size:.84rem;font-weight:500;margin-bottom:5px}
-.fg .u{font-weight:300;color:var(--gr);font-size:.74rem}
-.fc{width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:10px;font-family:'Kanit',sans-serif;font-size:.95rem;color:var(--dk);background:var(--lt);-webkit-appearance:none;transition:.3s}
-.fc:focus{outline:0;border-color:var(--p);background:#fff;box-shadow:0 0 0 3px rgba(14,165,233,.1)}
-
-/* Slider */
+.fg label{display:block;font-size:.85rem;font-weight:500;margin-bottom:5px}
+.fg .u{font-weight:300;color:#64748b;font-size:.75rem}
+.fc{width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:10px;font-family:'Kanit',sans-serif;font-size:.95rem;color:#1e293b;background:#f1f5f9;-webkit-appearance:none;transition:.3s}
+.fc:focus{outline:0;border-color:#0ea5e9;background:#fff;box-shadow:0 0 0 3px rgba(14,165,233,.1)}
 .sc{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.sc input[type=range]{flex:1;height:6px;-webkit-appearance:none;background:linear-gradient(90deg,var(--p),var(--s));border-radius:3px}
-.sc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;background:#fff;border:3px solid var(--p);border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.sv{min-width:42px;text-align:center;font-weight:700;color:var(--p);font-size:1.05rem}
-
-/* Rate Presets */
+.sc input[type=range]{flex:1;height:6px;-webkit-appearance:none;background:linear-gradient(90deg,#0ea5e9,#6366f1);border-radius:3px}
+.sc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;background:#fff;border:3px solid #0ea5e9;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.sv{min-width:42px;text-align:center;font-weight:700;color:#0ea5e9;font-size:1.05rem}
 .rp{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
-.rps{padding:4px 10px;border:1px solid #e2e8f0;border-radius:20px;font-size:.7rem;cursor:pointer;background:#fff;font-family:'Kanit',sans-serif;color:var(--gr);transition:.2s}
-.rps:hover,.rps.on{background:var(--p);color:#fff;border-color:var(--p)}
-
-/* Button */
-.btn{width:100%;padding:13px;border:none;border-radius:12px;font-family:'Kanit',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+.rps{padding:4px 10px;border:1px solid #e2e8f0;border-radius:20px;font-size:.72rem;cursor:pointer;background:#fff;font-family:'Kanit',sans-serif;color:#64748b;transition:.2s}
+.rps:hover,.rps.on{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-family:'Kanit',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
 .btn:active{transform:scale(.97)}
-.bp{background:linear-gradient(135deg,var(--p),var(--s));color:#fff;box-shadow:0 4px 16px rgba(14,165,233,.25)}
-.bg{background:linear-gradient(135deg,var(--ok),#16a34a);color:#fff}
-.bw{background:linear-gradient(135deg,var(--w),#d97706);color:#fff}
-.bo{background:none;border:2px solid var(--p);color:var(--p)}
-.br{background:linear-gradient(135deg,var(--er),#dc2626);color:#fff}
-.bgrp{display:flex;gap:8px;margin:12px 0}.bgrp .btn{flex:1;font-size:.82rem;padding:10px 6px}
-
-/* Result */
-.rh{background:linear-gradient(135deg,var(--p),var(--s));color:#fff;border-radius:14px;padding:22px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden}
-.rh::before{content:'';position:absolute;top:-40%;right:-40%;width:80%;height:80%;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%)}
-.rh .bn{font-size:2.8rem;font-weight:700;line-height:1}
+.bp{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;box-shadow:0 4px 16px rgba(14,165,233,.25)}
+.bg{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.bw{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.bo{background:none;border:2px solid #0ea5e9;color:#0ea5e9}
+.br{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
+.bgrp{display:flex;gap:8px;margin:12px 0}.bgrp .btn{flex:1;font-size:.82rem;padding:10px}
+.rh{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:14px;padding:24px;text-align:center;margin-bottom:12px}
+.rh .bn{font-size:3rem;font-weight:700;line-height:1}
 .rh .bl{font-size:.85rem;opacity:.9;margin-top:4px}
 .rg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.ri{background:var(--lt);border-radius:10px;padding:12px;text-align:center}
-.ri .v{font-size:1.1rem;font-weight:700;color:var(--pd)}
-.ri .l{font-size:.7rem;color:var(--gr);margin-top:2px}
-.rd{border-left:4px solid var(--p);padding:10px 14px;background:var(--pl);border-radius:0 10px 10px 0;margin-bottom:8px}
-.dr{display:flex;justify-content:space-between;padding:3px 0;font-size:.84rem}
-.dv{font-weight:600;color:var(--pd)}
-
-/* Table */
-.mt{width:100%;border-collapse:collapse;font-size:.8rem;overflow:hidden;border-radius:10px}
-.mt th{background:linear-gradient(135deg,var(--p),var(--s));color:#fff;padding:9px;font-weight:500}
+.ri{background:#f1f5f9;border-radius:10px;padding:12px;text-align:center}
+.ri .v{font-size:1.15rem;font-weight:700;color:#0284c7}
+.ri .l{font-size:.72rem;color:#64748b;margin-top:2px}
+.rd{border-left:4px solid #0ea5e9;padding:10px 14px;background:#e0f2fe;border-radius:0 10px 10px 0;margin-bottom:8px}
+.dr{display:flex;justify-content:space-between;padding:3px 0;font-size:.85rem}
+.dv{font-weight:600;color:#0284c7}
+.mt{width:100%;border-collapse:collapse;font-size:.8rem}
+.mt th{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:9px;font-weight:500}
 .mt td{padding:9px;text-align:center;border-bottom:1px solid #e2e8f0}
-.mt tr:nth-child(even){background:var(--lt)}
-.mt tr.ar{background:var(--pl);font-weight:700}
-.mt tr.ar td{color:var(--pd)}
-
-/* History */
+.mt tr:nth-child(even){background:#f1f5f9}
+.mt tr.ar{background:#e0f2fe;font-weight:700}
+.mt tr.ar td{color:#0284c7}
 .hi{background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;box-shadow:0 2px 12px rgba(0,0,0,.05);display:flex;align-items:center;gap:10px}
-.hic{width:40px;height:40px;background:var(--pl);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.hin{flex:1;overflow:hidden}.hin h4{font-size:.82rem}.hin p{font-size:.7rem;color:var(--gr)}
-.hb{background:var(--p);color:#fff;padding:3px 8px;border-radius:20px;font-size:.7rem;font-weight:600}
-.hdl{background:none;border:none;color:var(--er);font-size:.9rem;cursor:pointer;padding:6px}
-
-/* Compare Table */
+.hic{width:40px;height:40px;background:#e0f2fe;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.hin{flex:1;overflow:hidden}.hin h4{font-size:.82rem}.hin p{font-size:.7rem;color:#64748b}
+.hb{background:#0ea5e9;color:#fff;padding:3px 8px;border-radius:20px;font-size:.7rem;font-weight:600;flex-shrink:0}
+.hdl{background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer;padding:6px;flex-shrink:0}
 .cpt{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px}
-.cpt th,.cpt td{padding:8px 5px;text-align:center;border-bottom:1px solid #e2e8f0}
-.cpt th{background:var(--lt);font-weight:600;color:var(--gr)}
-.cpt .best{color:var(--ok);font-weight:700}
-
-/* Quote */
+.cpt th,.cpt td{padding:8px;text-align:center;border-bottom:1px solid #e2e8f0}
+.cpt th{background:#f1f5f9;font-weight:600;color:#64748b}
+.cpt .best{color:#22c55e;font-weight:700;background:#f0fdf4}
 .qr{display:flex;gap:5px;margin-bottom:6px;align-items:center}
 .qr input{font-family:'Kanit',sans-serif;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:.82rem;width:100%}
-.qr .qn{flex:2}.qr .qq,.qr .qp{flex:1}
-.qr .qd{width:34px;height:34px;border:none;background:#fee2e2;color:var(--er);border-radius:8px;cursor:pointer;font-size:.9rem;flex-shrink:0}
-.qt{font-size:1.1rem;font-weight:700;color:var(--pd);text-align:right;padding:10px 0;border-top:2px solid var(--p);margin-top:8px}
+.qr .qn{flex:2.5}.qr .qq,.qr .qp{flex:1}
+.qr .qd{width:34px;height:34px;border:none;background:#fee2e2;color:#ef4444;border-radius:8px;cursor:pointer;font-size:.9rem;flex-shrink:0;font-family:'Kanit',sans-serif}
+.qt{font-size:1.1rem;font-weight:700;color:#0284c7;text-align:right;padding:10px 0;border-top:2px solid #0ea5e9;margin-top:8px}
+.es{text-align:center;padding:30px;color:#64748b}
+.es i{font-size:2.5rem;margin-bottom:10px;opacity:.25;display:block}
+.hidden{display:none!important}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#1e293b;color:#fff;padding:10px 20px;border-radius:10px;font-size:.85rem;z-index:999;transition:transform .3s;font-family:'Kanit',sans-serif}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.info-box{background:#e0f2fe;border:1px dashed #0ea5e9;border-radius:12px;padding:14px;margin-bottom:12px}
+.info-box ul{font-size:.8rem;color:#64748b;padding-left:20px;line-height:1.9}
+@media print{.hdr,.tabs,.bgrp,.no-print{display:none!important}.pg{display:block!important;padding:0}.cd{box-shadow:none;border:1px solid #ddd}}
+</style>
+</head>
+<body>
 
-/* Utilities */
-.es{text-align:center;
+<div class="hdr">
+<h1>💧 Water Filter Calculator</h1>
+<p>ระบบคำนวณขนาดถังกรองน้ำอัตโนมัติ v2.0</p>
+</div>
+
+<div class="tabs">
+<button class="tbtn on" onclick="go('calc')"><i class="fas fa-calculator"></i>คำนวณ</button>
+<button class="tbtn" onclick="go('result')"><i class="fas fa-chart-pie"></i>ผลลัพธ์</button>
+<button class="tbtn" onclick="go('compare')"><i class="fas fa-code-compare"></i>เทียบ</button>
+<button class="tbtn" onclick="go('history')"><i class="fas fa-clock-rotate-left"></i>ประวัติ</button>
+<button class="tbtn" onclick="go('quote')"><i class="fas fa-file-invoice-dollar"></i>ราคา</button>
+</div>
+
+<!-- ==================== PAGE: CALCULATOR ==================== -->
+<div id="p-calc" class="pg on">
+<div class="cd">
+<div class="ct"><i class="fas fa-sliders"></i> ข้อมูลการใช้งาน</div>
+
+<div class="fg">
+<label>💧 ปริมาณใช้น้ำ <span class="u">(คิว/วัน = m³/วัน)</span></label>
+<div class="sc">
+<input type="range" id="sW" min="1" max="500" value="25" oninput="sk('W')">
+<span class="sv" id="vW">25</span>
+</div>
+<input type="number" class="fc" id="iW" value="25" min="1" oninput="ik('W')">
+</div>
+
+<div class="fg">
+<label>⏱️ ชั่วโมงทำงาน <span class="u">(/วัน)</span></label>
+<div class="sc">
+<input type="range" id="sH" min="1" max="24" value="10" oninput="sk('H')">
+<span class="sv" id="vH">10</span>
+</div>
+<input type="number" class="fc" id="iH" value="10" min="1" max="24" oninput="ik('H')">
+</div>
+
+<div class="fg">
+<label><i class="fas fa-filter"></i> ประเภทระบบกรอง</label>
+<select class="fc" id="iType">
+<option value="Carbon">Carbon (ถ่านกัมมันต์)</option>
+<option value="Manganese">Manganese (แมงกานีส)</option>
+<option value="Resin">Resin (เรซิ่น)</option>
+<option value="Carbon+Resin+Manganese" selected>Carbon + Resin + Manganese</option>
+<option value="Anthracite+Resin+Manganese">Anthracite + Resin + Manganese</option>
+<option value="Carbon+Anthracite+Resin">Carbon + Anthracite + Resin</option>
+</select>
+</div>
+
+<div class="fg">
+<label>⚡ Filtration Rate <span class="u">(m³/hr/m²)</span></label>
+<input type="number" class="fc" id="iR" value="8" min="1" max="30" step="0.5">
+<div class="rp">
+<span class="rps" onclick="sr(5,this)">ช้า (5)</span>
+<span class="rps on" onclick="sr(8,this)">ปกติ (8)</span>
+<span class="rps" onclick="sr(10,this)">เร็ว (10)</span>
+<span class="rps" onclick="sr(12,this)">เร็วมาก (12)</span>
+</div>
+</div>
+</div>
+
+<button class="btn bp" onclick="calc()"><i class="fas fa-bolt"></i> คำนวณเลย!</button>
+
+<div class="info-box" style="margin-top:12px">
+<div class="ct" style="font-size:.85rem;margin-bottom:8px"><i class="fas fa-info-circle"></i> สูตรคำนวณ</div>
+<ul>
+<li><b>Flow Rate</b> = ปริมาณน้ำ ÷ ชั่วโมงทำงาน</li>
+<li><b>พื้นที่หน้าตัด</b> = Flow Rate ÷ Filtration Rate</li>
+<li><b>เส้นผ่านศูนย์กลาง</b> = √(4 × พื้นที่ ÷ π)</li>
+<li>ถังแนะนำ = ขนาดมาตรฐานที่ใกล้เคียง (ปัดขึ้น)</li>
+</ul>
+</div>
+</div>
+
+<!-- ==================== PAGE: RESULT ==================== -->
+<div id="p-result" class="pg">
+<div id="noRes">
+<div class="cd"><div class="es">
+<i class="fas fa-calculator"></i>
+<p>ยังไม่มีผลคำนวณ<br>กดแท็บ "คำนวณ" ก่อนครับ</p>
+</div></div>
+</div>
+<div id="resBox" class="hidden">
+
+<div style="text-align:center;padding:10px 0">
+<svg width="100" height="155" viewBox="0 0 140 200">
+<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#0284c7"/></linearGradient></defs>
+<rect x="55" y="2" width="30" height="16" rx="4" fill="#64748b"/>
+<rect x="20" y="18" width="100" height="162" rx="50" fill="url(#wg)" stroke="#0284c7" stroke-width="3"/>
+<ellipse cx="70" cy="46" rx="28" ry="9" fill="rgba(255,255,255,.3)"/>
+<text x="70" y="115" text-anchor="middle" fill="#fff" font-size="18" font-weight="700" font-family="Kanit" id="svgL">-</text>
+</svg>
+</div>
+
+<div class="rh">
+<div class="bn" id="rTank">-</div>
+<div class="bl">นิ้ว — ขนาดถังแนะนำ</div>
+</div>
+
+<div class="rg">
+<div class="ri"><div class="v" id="rFlow">-</div><div class="l">Flow Rate (m³/hr)</div></div>
+<div class="ri"><div class="v" id="rArea">-</div><div class="l">พื้นที่หน้าตัด (m²)</div></div>
+<div class="ri"><div class="v" id="rDM">-</div><div class="l">Diameter (เมตร)</div></div>
+<div class="ri"><div class="v" id="rDI">-</div><div class="l">Diameter (นิ้ว)</div></div>
+</div>
+
+<div class="cd">
+<div class="ct"><i class="fas fa-list-check"></i> รายละเอียดการคำนวณ</div>
+<div class="rd">
+<div class="dr"><span>ปริมาณใช้น้ำ</span><span class="dv" id="dW">-</span></div>
+<div class="dr"><span>ชั่วโมงทำงาน</span><span class="dv" id="dH">-</span></div>
+<div class="dr"><span>ระบบกรอง</span><span class="dv" id="dS">-</span></div>
+<div class="dr"><span>Filtration Rate</span><span class="dv" id="dR">-</span></div>
+</div>
+<div class="rd" style="border-color:#22c55e;background:#f0fdf4">
+<div class="dr"><span>📦 สารกรองที่ต้องใช้</span><span class="dv" style="color:#16a34a" id="dM">-</span></div>
+</div>
+</div>
+
+<div class="cd">
+<div class="ct"><i class="fas fa-table"></i> ตารางสารกรองตามขนาดถัง</div>
+<table class="mt">
+<thead><tr><th>ขนาดถัง (นิ้ว)</th><th>สารกรอง (ลิตร)</th><th>สถานะ</th></tr></thead>
+<tbody id="mtB"></tbody>
+</table>
+</div>
+
+<div class="bgrp no-print">
+<button class="btn bg" onclick="saveH()"><i class="fas fa-save"></i> บันทึก</button>
+<button class="btn bw" onclick="shareR()"><i class="fas fa-share-alt"></i> แชร์</button>
+<button class="btn bo" onclick="addC()"><i class="fas fa-plus"></i> เทียบ</button>
+</div>
+</div>
+</div>
+
+<!-- ==================== PAGE: COMPARE ==================== -->
+<div id="p-compare" class="pg">
+<div class="cd">
+<div class="ct"><i class="fas fa-code-compare"></i> เปรียบเทียบผลคำนวณ</div>
+<p style="font-size:.8rem;color:#64748b;margin-bottom:10px">คำนวณค่าต่างๆ แล้วกดปุ่ม "เทียบ" ในหน้าผลลัพธ์ (สูงสุด 3 รายการ)</p>
+<div id="cmpE" class="es"><i class="fas fa-code-compare"></i><p>ยังไม่มีรายการเปรียบเทียบ</p></div>
+<div id="cmpT" class="hidden"></div>
+<button class="btn br" onclick="clrC()" style="margin-top:10px"><i class="fas fa-trash"></i> ล้างทั้งหมด</button>
+</div>
+</div>
+
+<!-- ==================== PAGE: HISTORY ==================== -->
+<div id="p-history" class="pg">
+<div class="cd">
+<div class="ct"><i class="fas fa-clock-rotate-left"></i> ประวัติการคำนวณ</div>
+<div id="hList"></div>
+<div id="hEmpty" class="es"><i class="fas fa-clock-rotate-left"></i><p>ยังไม่มีประวัติ<br>คำนวณแล้วกด "บันทึก" ในหน้าผลลัพธ์</p></div>
+<button class="btn br" onclick="clrH()" style="margin-top:10px"><i class="fas fa-trash"></i> ล้างประวัติทั้งหมด</button>
+</div>
+</div>
+
+<!-- ==================== PAGE: QUOTE ==================== -->
+<div id="p-quote" class="pg">
+<div class="cd">
+<div class="ct"><i class="fas fa-file-invoice-dollar"></i> ข้อมูลใบเสนอราคา</div>
+<div class="fg"><label>ชื่อบริษัท (ผู้เสนอ)</label><input class="fc" id="qComp" placeholder="เช่น บจก.วอเตอร์เทค"></div>
+<div class="fg"><label>ชื่อลูกค้า</label><input class="fc" id="qCust" placeholder="ชื่อลูกค้า / บริษัท"></div>
+<div class="fg"><label>โปรเจค / หมายเหตุ</label><input class="fc" id="qProj" placeholder="ชื่อโปรเจค"></div>
+<div class="fg"><label>วันที่</label><input class="fc" type="date" id="qDate"></div>
+<button class="btn bo" onclick="autoFill()" id="btnAutoFill" style="font-size:.85rem;margin-top:4px"><i class="fas fa-magic"></i> เติมข้อมูลจากผลคำนวณ</button>
+</div>
+
+<div class="cd">
+<div class="ct"><i class="fas fa-list-ol"></i> รายการสินค้า</div>
+<div style="display:flex;gap:5px;margin-bottom:6px;font-size:.7rem;color:#64748b;padding:0 2px">
+<span style="flex:2.5">รายการ</span>
+<span style="flex:1;text-align:center">จำนวน</span>
+<span style="flex:1;text-align:center">ราคา/หน่วย</span>
+<span style="width:34px"></span>
+</div>
+<div id="qItems"></div>
+<button class="btn bo" onclick="addQI()" style="margin-top:8px;font-size:.85rem"><i class="fas fa-plus"></i> เพิ่มรายการ</button>
+<div class="qt" id="qTot">รวมทั้งสิ้น: ฿ 0.00</div>
+</div>
+
+<div class="bgrp">
+<button class="btn bg" onclick="calcQ()"><i class="fas fa-calculator"></i> คำนวณยอด</button>
+<button class="btn bw" onclick="window.print()"><i class="fas fa-print"></i> พิมพ์</button>
+<button class="btn bp" onclick="shareQ()"><i class="fas fa-share-alt"></i> แชร์</button>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+/* =============================================
+   ข้อมูลขนาดถังมาตรฐาน + ปริมาณสารกรอง
+   ============================================= */
+var TANKS = [
+    { size: 10, media: 50 },
+    { size: 12, media: 75 },
+    { size: 16, media: 125 },
+    { size: 18, media: 150 },
+    { size: 21, media: 200 },
+    { size: 24, media: 275 },
+    { size: 30, media: 500 },
+    { size: 36, media: 800 },
+    { size: 42, media: 1200 },
+    { size: 48, media: 1600 },
+    { size: 54, media: 2200 },
+    { size: 63, media: 3000 }
+];
+
+/* ตัวแปรหลัก */
+var lastResult = null;
+var compareList = [];
+var historyList = [];
+
+/* โหลดประวัติจาก localStorage */
+try {
+    historyList = JSON.parse(localStorage.getItem('waterFilterHistory')) || [];
+} catch (e) {
+    historyList = [];
+}
+
+/* =============================================
+   Toast แจ้งเตือน
+   ============================================= */
+function toast(message) {
+    var t = document.getElementById('toast');
+    t.textContent = message;
+    t.classList.add('show');
+    setTimeout(function () {
+        t.classList.remove('show');
+    }, 2500);
+}
+
+/* =============================================
+   สลับแท็บ
+   ============================================= */
+var PAGE_LIST = ['calc', 'result', 'compare', 'history', 'quote'];
+
+function go(pageId) {
+    var allPages = document.querySelectorAll('.pg');
+    var allBtns = document.querySelectorAll('.tbtn');
+
+    for (var i = 0; i < allPages.length; i++) {
+        allPages[i].classList.remove('on');
+        allBtns[i].classList.remove('on');
+    }
+
+    document.getElementById('p-' + pageId).classList.add('on');
+    allBtns[PAGE_LIST.indexOf(pageId)].classList.add('on');
+
+    if (pageId === 'history') {
+        renderHistory();
+    }
+}
+
+/* =============================================
+   Sync Slider กับ Input
+   ============================================= */
+function sk(key) {
+    var slider = document.getElementById('s' + key);
+    var display = document.getElementById('v' + key);
+    var input = document.getElementById('i' + key);
+    display.textContent = slider.value;
+    input.value = slider.value;
+}
+
+function ik(key) {
+    var input = document.getElementById('i' + key);
+    var slider = document.getElementById('s' + key);
+    var display = document.getElementById('v' + key);
+    var val = parseFloat(input.value);
+
+    if (isNaN(val) || val < parseFloat(slider.min)) val = parseFloat(slider.min);
+    if (val > parseFloat(slider.max)) val = parseFloat(slider.max);
+
+    slider.value = val;
+    display.textContent = val;
+}
+
+/* =============================================
+   เลือก Filtration Rate Preset
+   ============================================= */
+function sr(value, element) {
+    document.getElementById('iR').value = value;
+    var allPresets = document.querySelectorAll('.rps');
+    for (var i = 0; i < allPresets.length; i++) {
+        allPresets[i].classList.remove('on');
+    }
+    if (element) element.classList.add('on');
+}
+
+/* =============================================
+   ฟังก์ชันคำนวณหลัก (สำคัญที่สุด!)
+   ============================================= */
+function calc() {
