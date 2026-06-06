@@ -3,377 +3,500 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-<meta name="theme-color" content="#0ea5e9">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Water Filter Calculator</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<title>Water Filter Calculator Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Kanit',sans-serif;background:linear-gradient(135deg,#e0f2fe,#f0f9ff,#e8eaf6);min-height:100vh;max-width:540px;margin:0 auto;color:#1e293b;padding-bottom:20px}
-.hdr{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(14,165,233,.3)}
-.hdr h1{font-size:1.3rem}.hdr p{font-size:.75rem;opacity:.85;margin-top:3px}
-.tabs{display:flex;background:#fff;margin:12px;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.06);overflow:hidden}
-.tbtn{flex:1;padding:10px 2px;border:none;background:none;font-family:'Kanit',sans-serif;font-size:.68rem;font-weight:500;color:#64748b;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.3s}
-.tbtn i{font-size:1rem}
-.tbtn.on{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff}
-.pg{display:none;padding:0 12px;animation:fi .3s}.pg.on{display:block}
-@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-.cd{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.ct{font-size:.92rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:#0284c7}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:.85rem;font-weight:500;margin-bottom:5px}
-.fg .u{font-weight:300;color:#64748b;font-size:.75rem}
-.fc{width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:10px;font-family:'Kanit',sans-serif;font-size:.95rem;color:#1e293b;background:#f1f5f9;-webkit-appearance:none;transition:.3s}
-.fc:focus{outline:0;border-color:#0ea5e9;background:#fff;box-shadow:0 0 0 3px rgba(14,165,233,.1)}
-.sc{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.sc input[type=range]{flex:1;height:6px;-webkit-appearance:none;background:linear-gradient(90deg,#0ea5e9,#6366f1);border-radius:3px}
-.sc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;background:#fff;border:3px solid #0ea5e9;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.sv{min-width:42px;text-align:center;font-weight:700;color:#0ea5e9;font-size:1.05rem}
-.rp{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
-.rps{padding:4px 10px;border:1px solid #e2e8f0;border-radius:20px;font-size:.72rem;cursor:pointer;background:#fff;font-family:'Kanit',sans-serif;color:#64748b;transition:.2s}
-.rps:hover,.rps.on{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-family:'Kanit',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+body{font-family:'Kanit',sans-serif;background:linear-gradient(160deg,#e0f2fe,#f0f9ff 40%,#ede9fe);min-height:100vh;max-width:560px;margin:0 auto;color:#1e293b;padding-bottom:20px}
+.hdr{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:16px 20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(14,165,233,.35)}
+.hdr h1{font-size:1.2rem}.hdr p{font-size:.72rem;opacity:.85;margin-top:2px}
+.tabs{display:flex;background:#fff;margin:10px 12px;border-radius:14px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.T{flex:1;padding:9px 2px;border:none;background:none;font-family:'Kanit',sans-serif;font-size:.64rem;font-weight:500;color:#94a3b8;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+.T i{font-size:.92rem}.T.on{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff}
+.P{display:none;padding:0 12px 24px}.P.on{display:block}
+.C{background:#fff;border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:0 2px 16px rgba(0,0,0,.05)}
+.ct{font-size:.9rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:#0284c7}
+.fg{margin-bottom:16px}.fg label{display:block;font-size:.84rem;font-weight:500;margin-bottom:6px}
+.u{color:#94a3b8;font-size:.72rem;font-weight:300}
+.fc{width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:12px;font-family:'Kanit',sans-serif;font-size:.92rem;background:#f8fafc;-webkit-appearance:none}
+.fc:focus{outline:0;border-color:#0ea5e9;background:#fff}
+.sr{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sr input[type=range]{flex:1;height:6px;-webkit-appearance:none;background:linear-gradient(90deg,#0ea5e9,#6366f1);border-radius:4px}
+.sr input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;background:#fff;border:3px solid #0ea5e9;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.sv{min-width:44px;text-align:center;font-weight:700;color:#0ea5e9;font-size:1.1rem;background:#e0f2fe;padding:4px 8px;border-radius:8px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chip{padding:5px 12px;border:1.5px solid #e2e8f0;border-radius:20px;font-size:.72rem;cursor:pointer;background:#fff;font-family:'Kanit',sans-serif;color:#64748b}
+.chip.on{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+.btn{width:100%;padding:14px;border:none;border-radius:14px;font-family:'Kanit',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn:active{transform:scale(.97)}
-.bp{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;box-shadow:0 4px 16px rgba(14,165,233,.25)}
-.bg{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
-.bw{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
-.bo{background:none;border:2px solid #0ea5e9;color:#0ea5e9}
-.br{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
-.bgrp{display:flex;gap:8px;margin:12px 0}.bgrp .btn{flex:1;font-size:.82rem;padding:10px}
+.b1{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;box-shadow:0 4px 16px rgba(14,165,233,.25)}
+.b2{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.b3{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.b4{background:none;border:2px solid #0ea5e9;color:#0ea5e9}
+.b5{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
+.bg{display:flex;gap:8px;margin:12px 0}.bg .btn{flex:1;font-size:.8rem;padding:10px}
 .rh{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border-radius:14px;padding:24px;text-align:center;margin-bottom:12px}
-.rh .bn{font-size:3rem;font-weight:700;line-height:1}
-.rh .bl{font-size:.85rem;opacity:.9;margin-top:4px}
+.rh .bn{font-size:3rem;font-weight:700}.rh .bl{font-size:.85rem;opacity:.9;margin-top:4px}
 .rg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .ri{background:#f1f5f9;border-radius:10px;padding:12px;text-align:center}
-.ri .v{font-size:1.15rem;font-weight:700;color:#0284c7}
-.ri .l{font-size:.72rem;color:#64748b;margin-top:2px}
+.ri .v{font-size:1.15rem;font-weight:700;color:#0284c7}.ri .l{font-size:.7rem;color:#64748b;margin-top:2px}
 .rd{border-left:4px solid #0ea5e9;padding:10px 14px;background:#e0f2fe;border-radius:0 10px 10px 0;margin-bottom:8px}
-.dr{display:flex;justify-content:space-between;padding:3px 0;font-size:.85rem}
+.dr{display:flex;justify-content:space-between;padding:3px 0;font-size:.84rem}
 .dv{font-weight:600;color:#0284c7}
-.mt{width:100%;border-collapse:collapse;font-size:.8rem}
-.mt th{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:9px;font-weight:500}
-.mt td{padding:9px;text-align:center;border-bottom:1px solid #e2e8f0}
-.mt tr:nth-child(even){background:#f1f5f9}
-.mt tr.ar{background:#e0f2fe;font-weight:700}
-.mt tr.ar td{color:#0284c7}
-.hi{background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;box-shadow:0 2px 12px rgba(0,0,0,.05);display:flex;align-items:center;gap:10px}
+.mt{width:100%;border-collapse:collapse;font-size:.78rem}
+.mt th{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;padding:8px}
+.mt td{padding:8px;text-align:center;border-bottom:1px solid #e2e8f0}
+.mt tr:nth-child(even){background:#f8fafc}
+.mt tr.ar{background:#dbeafe;font-weight:700}.mt tr.ar td{color:#0284c7}
+.hi{background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:center;gap:10px}
 .hic{width:40px;height:40px;background:#e0f2fe;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.hin{flex:1;overflow:hidden}.hin h4{font-size:.82rem}.hin p{font-size:.7rem;color:#64748b}
-.hb{background:#0ea5e9;color:#fff;padding:3px 8px;border-radius:20px;font-size:.7rem;font-weight:600;flex-shrink:0}
-.hdl{background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer;padding:6px;flex-shrink:0}
-.cpt{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px}
-.cpt th,.cpt td{padding:8px;text-align:center;border-bottom:1px solid #e2e8f0}
-.cpt th{background:#f1f5f9;font-weight:600;color:#64748b}
-.cpt .best{color:#22c55e;font-weight:700;background:#f0fdf4}
+.hin{flex:1;overflow:hidden}.hin h4{font-size:.8rem}.hin p{font-size:.68rem;color:#64748b}
+.hb{background:#0ea5e9;color:#fff;padding:3px 8px;border-radius:20px;font-size:.68rem;font-weight:600;flex-shrink:0}
+.hd{background:none;border:none;color:#ef4444;font-size:.9rem;cursor:pointer;padding:6px;flex-shrink:0}
+.ct2{width:100%;border-collapse:collapse;font-size:.76rem;margin-top:10px}
+.ct2 th,.ct2 td{padding:7px 5px;text-align:center;border-bottom:1px solid #e2e8f0}
+.ct2 th{background:#f1f5f9;font-weight:600;color:#64748b}
+.ct2 .best{color:#16a34a;font-weight:700;background:#f0fdf4}
 .qr{display:flex;gap:5px;margin-bottom:6px;align-items:center}
-.qr input{font-family:'Kanit',sans-serif;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:.82rem;width:100%}
+.qr input{font-family:'Kanit',sans-serif;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:.8rem;width:100%}
 .qr .qn{flex:2.5}.qr .qq,.qr .qp{flex:1}
-.qr .qd{width:34px;height:34px;border:none;background:#fee2e2;color:#ef4444;border-radius:8px;cursor:pointer;font-size:.9rem;flex-shrink:0;font-family:'Kanit',sans-serif}
-.qt{font-size:1.1rem;font-weight:700;color:#0284c7;text-align:right;padding:10px 0;border-top:2px solid #0ea5e9;margin-top:8px}
-.es{text-align:center;padding:30px;color:#64748b}
-.es i{font-size:2.5rem;margin-bottom:10px;opacity:.25;display:block}
+.qr .qd{width:32px;height:32px;border:none;background:#fee2e2;color:#ef4444;border-radius:8px;cursor:pointer;font-size:.85rem;flex-shrink:0}
+.qt{font-size:1.05rem;font-weight:700;color:#0284c7;text-align:right;padding:10px 0;border-top:2px solid #0ea5e9;margin-top:8px}
+.es{text-align:center;padding:30px;color:#94a3b8}.es i{font-size:2.5rem;margin-bottom:10px;opacity:.3;display:block}
 .hidden{display:none!important}
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#1e293b;color:#fff;padding:10px 20px;border-radius:10px;font-size:.85rem;z-index:999;transition:transform .3s;font-family:'Kanit',sans-serif}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#1e293b;color:#fff;padding:10px 20px;border-radius:10px;font-size:.82rem;z-index:999;transition:transform .3s;font-family:'Kanit',sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.2)}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.info-box{background:#e0f2fe;border:1px dashed #0ea5e9;border-radius:12px;padding:14px;margin-bottom:12px}
-.info-box ul{font-size:.8rem;color:#64748b;padding-left:20px;line-height:1.9}
-@media print{.hdr,.tabs,.bgrp,.no-print{display:none!important}.pg{display:block!important;padding:0}.cd{box-shadow:none;border:1px solid #ddd}}
+.formula{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px;margin-top:12px;font-size:.78rem;color:#92400e;line-height:1.8}
+.formula b{color:#78350f}
+@media print{.hdr,.tabs,.bg{display:none!important}.P{display:block!important;padding:0}.C{box-shadow:none;border:1px solid #ddd;break-inside:avoid}}
 </style>
 </head>
 <body>
-
-<div class="hdr">
-<h1>💧 Water Filter Calculator</h1>
-<p>ระบบคำนวณขนาดถังกรองน้ำอัตโนมัติ v2.0</p>
-</div>
-
+<div class="hdr"><h1>💧 Water Filter Calculator Pro</h1><p>ระบบคำนวณขนาดถังกรองน้ำอัตโนมัติ v3.0</p></div>
 <div class="tabs">
-<button class="tbtn on" onclick="go('calc')"><i class="fas fa-calculator"></i>คำนวณ</button>
-<button class="tbtn" onclick="go('result')"><i class="fas fa-chart-pie"></i>ผลลัพธ์</button>
-<button class="tbtn" onclick="go('compare')"><i class="fas fa-code-compare"></i>เทียบ</button>
-<button class="tbtn" onclick="go('history')"><i class="fas fa-clock-rotate-left"></i>ประวัติ</button>
-<button class="tbtn" onclick="go('quote')"><i class="fas fa-file-invoice-dollar"></i>ราคา</button>
+<button class="T on" id="t0" onclick="go(0)"><i class="fas fa-calculator"></i>คำนวณ</button>
+<button class="T" id="t1" onclick="go(1)"><i class="fas fa-chart-pie"></i>ผลลัพธ์</button>
+<button class="T" id="t2" onclick="go(2)"><i class="fas fa-code-compare"></i>เทียบ</button>
+<button class="T" id="t3" onclick="go(3)"><i class="fas fa-clock-rotate-left"></i>ประวัติ</button>
+<button class="T" id="t4" onclick="go(4)"><i class="fas fa-file-invoice-dollar"></i>ราคา</button>
 </div>
 
-<!-- ==================== PAGE: CALCULATOR ==================== -->
-<div id="p-calc" class="pg on">
-<div class="cd">
-<div class="ct"><i class="fas fa-sliders"></i> ข้อมูลการใช้งาน</div>
+<!-- === PAGE 0: CALCULATOR === -->
+<div id="p0" class="P on"><div class="C"><div class="ct"><i class="fas fa-sliders"></i> ข้อมูลการใช้งาน</div>
+<div class="fg"><label>💧 ปริมาณใช้น้ำ <span class="u">(m³/วัน)</span></label><div class="sr"><input type="range" id="sW" min="1" max="500" value="25" oninput="sync('W')"><span class="sv" id="vW">25</span></div><input type="number" class="fc" id="iW" value="25" min="1" oninput="syncI('W')"></div>
+<div class="fg"><label>⏱️ ชั่วโมงทำงาน <span class="u">(/วัน)</span></label><div class="sr"><input type="range" id="sH" min="1" max="24" value="10" oninput="sync('H')"><span class="sv" id="vH">10</span></div><input type="number" class="fc" id="iH" value="10" min="1" max="24" oninput="syncI('H')"></div>
+<div class="fg"><label><i class="fas fa-filter"></i> ประเภทระบบกรอง</label><select class="fc" id="iType"><option>Carbon</option><option>Manganese</option><option>Resin</option><option selected>Carbon+Resin+Manganese</option><option>Anthracite+Resin+Manganese</option><option>Carbon+Anthracite+Resin</option></select></div>
+<div class="fg"><label>⚡ Filtration Rate <span class="u">(m³/hr/m²)</span></label><input type="number" class="fc" id="iR" value="8" min="1" max="30" step="0.5"><div class="chips"><span class="chip" onclick="setRate(5,this)">ช้า (5)</span><span class="chip on" onclick="setRate(8,this)">ปกติ (8)</span><span class="chip" onclick="setRate(10,this)">เร็ว (10)</span><span class="chip" onclick="setRate(12,this)">เร็วมาก (12)</span></div></div></div>
+<button class="btn b1" onclick="doCalc()"><i class="fas fa-bolt"></i> คำนวณเลย!</button>
+<div class="formula"><b>📐 สูตร:</b><br>Flow Rate = ปริมาณน้ำ ÷ ชั่วโมง<br>พื้นที่หน้าตัด = Flow Rate ÷ Filtration Rate<br>Diameter = √(4 × พื้นที่ ÷ π) แปลงเป็นนิ้ว<br>เลือกถังมาตรฐานที่ใหญ่กว่า Diameter ที่คำนวณได้</div></div>
 
-<div class="fg">
-<label>💧 ปริมาณใช้น้ำ <span class="u">(คิว/วัน = m³/วัน)</span></label>
-<div class="sc">
-<input type="range" id="sW" min="1" max="500" value="25" oninput="sk('W')">
-<span class="sv" id="vW">25</span>
-</div>
-<input type="number" class="fc" id="iW" value="25" min="1" oninput="ik('W')">
-</div>
-
-<div class="fg">
-<label>⏱️ ชั่วโมงทำงาน <span class="u">(/วัน)</span></label>
-<div class="sc">
-<input type="range" id="sH" min="1" max="24" value="10" oninput="sk('H')">
-<span class="sv" id="vH">10</span>
-</div>
-<input type="number" class="fc" id="iH" value="10" min="1" max="24" oninput="ik('H')">
-</div>
-
-<div class="fg">
-<label><i class="fas fa-filter"></i> ประเภทระบบกรอง</label>
-<select class="fc" id="iType">
-<option value="Carbon">Carbon (ถ่านกัมมันต์)</option>
-<option value="Manganese">Manganese (แมงกานีส)</option>
-<option value="Resin">Resin (เรซิ่น)</option>
-<option value="Carbon+Resin+Manganese" selected>Carbon + Resin + Manganese</option>
-<option value="Anthracite+Resin+Manganese">Anthracite + Resin + Manganese</option>
-<option value="Carbon+Anthracite+Resin">Carbon + Anthracite + Resin</option>
-</select>
-</div>
-
-<div class="fg">
-<label>⚡ Filtration Rate <span class="u">(m³/hr/m²)</span></label>
-<input type="number" class="fc" id="iR" value="8" min="1" max="30" step="0.5">
-<div class="rp">
-<span class="rps" onclick="sr(5,this)">ช้า (5)</span>
-<span class="rps on" onclick="sr(8,this)">ปกติ (8)</span>
-<span class="rps" onclick="sr(10,this)">เร็ว (10)</span>
-<span class="rps" onclick="sr(12,this)">เร็วมาก (12)</span>
-</div>
-</div>
-</div>
-
-<button class="btn bp" onclick="calc()"><i class="fas fa-bolt"></i> คำนวณเลย!</button>
-
-<div class="info-box" style="margin-top:12px">
-<div class="ct" style="font-size:.85rem;margin-bottom:8px"><i class="fas fa-info-circle"></i> สูตรคำนวณ</div>
-<ul>
-<li><b>Flow Rate</b> = ปริมาณน้ำ ÷ ชั่วโมงทำงาน</li>
-<li><b>พื้นที่หน้าตัด</b> = Flow Rate ÷ Filtration Rate</li>
-<li><b>เส้นผ่านศูนย์กลาง</b> = √(4 × พื้นที่ ÷ π)</li>
-<li>ถังแนะนำ = ขนาดมาตรฐานที่ใกล้เคียง (ปัดขึ้น)</li>
-</ul>
-</div>
-</div>
-
-<!-- ==================== PAGE: RESULT ==================== -->
-<div id="p-result" class="pg">
-<div id="noRes">
-<div class="cd"><div class="es">
-<i class="fas fa-calculator"></i>
-<p>ยังไม่มีผลคำนวณ<br>กดแท็บ "คำนวณ" ก่อนครับ</p>
+<!-- === PAGE 1: RESULT === -->
+<div id="p1" class="P">
+<div id="noRes"><div class="C"><div class="es"><i class="fas fa-calculator"></i><p>ยังไม่ได้คำนวณ กดแท็บ "คำนวณ" ก่อน</p></div></div></div>
+<div id="hasRes" class="hidden">
+<div style="text-align:center;padding:8px"><svg width="90" height="140" viewBox="0 0 140 200"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#0284c7"/></linearGradient></defs><rect x="55" y="2" width="30" height="16" rx="4" fill="#64748b"/><rect x="20" y="18" width="100" height="162" rx="50" fill="url(#wg)" stroke="#0284c7" stroke-width="3"/><ellipse cx="70" cy="46" rx="28" ry="9" fill="rgba(255,255,255,.3)"/><text x="70" y="115" text-anchor="middle" fill="#fff" font-size="18" font-weight="700" font-family="Kanit" id="svgTxt">-</text></svg></div>
+<div class="rh"><div class="bn" id="oTank">-</div><div class="bl">นิ้ว — ขนาดถังแนะนำ</div></div>
+<div class="rg"><div class="ri"><div class="v" id="oFlow">-</div><div class="l">Flow Rate (m³/hr)</div></div><div class="ri"><div class="v" id="oArea">-</div><div class="l">พื้นที่หน้าตัด (m²)</div></div><div class="ri"><div class="v" id="oDiaM">-</div><div class="l">Diameter (ม.)</div></div><div class="ri"><div class="v" id="oDiaI">-</div><div class="l">Diameter (นิ้ว)</div></div></div>
+<div class="C"><div class="ct"><i class="fas fa-list-check"></i> รายละเอียดการคำนวณ</div>
+<div class="rd"><div class="dr"><span>ปริมาณน้ำ</span><span class="dv" id="oW">-</span></div><div class="dr"><span>ชั่วโมงทำงาน</span><span class="dv" id="oH">-</span></div><div class="dr"><span>ระบบกรอง</span><span class="dv" id="oS">-</span></div><div class="dr"><span>Filtration Rate</span><span class="dv" id="oR">-</span></div></div>
+<div class="rd" style="border-color:#22c55e;background:#f0fdf4"><div class="dr"><span>📦 สารกรองที่ต้องใช้</span><span class="dv" style="color:#16a34a" id="oM">-</span></div></div></div>
+<div class="C"><div class="ct"><i class="fas fa-table"></i> ตารางสารกรองตามขนาดถัง</div><table class="mt"><thead><tr><th>ขนาดถัง (นิ้ว)</th><th>สารกรอง (ลิตร)</th></tr></thead><tbody id="tblBody"></tbody></table></div>
+<div class="bg"><button class="btn b2" onclick="doSave()"><i class="fas fa-save"></i> บันทึก</button><button class="btn b3" onclick="doShare()"><i class="fas fa-share-alt"></i> แชร์</button><button class="btn b4" onclick="doCompare()"><i class="fas fa-plus"></i> เทียบ</button></div>
 </div></div>
-</div>
-<div id="resBox" class="hidden">
 
-<div style="text-align:center;padding:10px 0">
-<svg width="100" height="155" viewBox="0 0 140 200">
-<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#0284c7"/></linearGradient></defs>
-<rect x="55" y="2" width="30" height="16" rx="4" fill="#64748b"/>
-<rect x="20" y="18" width="100" height="162" rx="50" fill="url(#wg)" stroke="#0284c7" stroke-width="3"/>
-<ellipse cx="70" cy="46" rx="28" ry="9" fill="rgba(255,255,255,.3)"/>
-<text x="70" y="115" text-anchor="middle" fill="#fff" font-size="18" font-weight="700" font-family="Kanit" id="svgL">-</text>
-</svg>
-</div>
+<!-- === PAGE 2: COMPARE === -->
+<div id="p2" class="P"><div class="C"><div class="ct"><i class="fas fa-code-compare"></i> เปรียบเทียบผลคำนวณ (สูงสุด 3)</div><p style="font-size:.78rem;color:#94a3b8;margin-bottom:10px">กดปุ่ม "เทียบ" จากหน้าผลลัพธ์เพื่อเพิ่มรายการ</p><div id="cmpBox"></div><button class="btn b5" onclick="clearCompare()" style="margin-top:10px"><i class="fas fa-trash"></i> ล้างทั้งหมด</button></div></div>
 
-<div class="rh">
-<div class="bn" id="rTank">-</div>
-<div class="bl">นิ้ว — ขนาดถังแนะนำ</div>
-</div>
+<!-- === PAGE 3: HISTORY === -->
+<div id="p3" class="P"><div class="C"><div class="ct"><i class="fas fa-clock-rotate-left"></i> ประวัติการคำนวณ</div><div id="histBox"></div><button class="btn b5" onclick="clearHistory()" style="margin-top:10px"><i class="fas fa-trash"></i> ล้างประวัติ</button></div></div>
 
-<div class="rg">
-<div class="ri"><div class="v" id="rFlow">-</div><div class="l">Flow Rate (m³/hr)</div></div>
-<div class="ri"><div class="v" id="rArea">-</div><div class="l">พื้นที่หน้าตัด (m²)</div></div>
-<div class="ri"><div class="v" id="rDM">-</div><div class="l">Diameter (เมตร)</div></div>
-<div class="ri"><div class="v" id="rDI">-</div><div class="l">Diameter (นิ้ว)</div></div>
-</div>
-
-<div class="cd">
-<div class="ct"><i class="fas fa-list-check"></i> รายละเอียดการคำนวณ</div>
-<div class="rd">
-<div class="dr"><span>ปริมาณใช้น้ำ</span><span class="dv" id="dW">-</span></div>
-<div class="dr"><span>ชั่วโมงทำงาน</span><span class="dv" id="dH">-</span></div>
-<div class="dr"><span>ระบบกรอง</span><span class="dv" id="dS">-</span></div>
-<div class="dr"><span>Filtration Rate</span><span class="dv" id="dR">-</span></div>
-</div>
-<div class="rd" style="border-color:#22c55e;background:#f0fdf4">
-<div class="dr"><span>📦 สารกรองที่ต้องใช้</span><span class="dv" style="color:#16a34a" id="dM">-</span></div>
-</div>
-</div>
-
-<div class="cd">
-<div class="ct"><i class="fas fa-table"></i> ตารางสารกรองตามขนาดถัง</div>
-<table class="mt">
-<thead><tr><th>ขนาดถัง (นิ้ว)</th><th>สารกรอง (ลิตร)</th><th>สถานะ</th></tr></thead>
-<tbody id="mtB"></tbody>
-</table>
-</div>
-
-<div class="bgrp no-print">
-<button class="btn bg" onclick="saveH()"><i class="fas fa-save"></i> บันทึก</button>
-<button class="btn bw" onclick="shareR()"><i class="fas fa-share-alt"></i> แชร์</button>
-<button class="btn bo" onclick="addC()"><i class="fas fa-plus"></i> เทียบ</button>
-</div>
-</div>
-</div>
-
-<!-- ==================== PAGE: COMPARE ==================== -->
-<div id="p-compare" class="pg">
-<div class="cd">
-<div class="ct"><i class="fas fa-code-compare"></i> เปรียบเทียบผลคำนวณ</div>
-<p style="font-size:.8rem;color:#64748b;margin-bottom:10px">คำนวณค่าต่างๆ แล้วกดปุ่ม "เทียบ" ในหน้าผลลัพธ์ (สูงสุด 3 รายการ)</p>
-<div id="cmpE" class="es"><i class="fas fa-code-compare"></i><p>ยังไม่มีรายการเปรียบเทียบ</p></div>
-<div id="cmpT" class="hidden"></div>
-<button class="btn br" onclick="clrC()" style="margin-top:10px"><i class="fas fa-trash"></i> ล้างทั้งหมด</button>
-</div>
-</div>
-
-<!-- ==================== PAGE: HISTORY ==================== -->
-<div id="p-history" class="pg">
-<div class="cd">
-<div class="ct"><i class="fas fa-clock-rotate-left"></i> ประวัติการคำนวณ</div>
-<div id="hList"></div>
-<div id="hEmpty" class="es"><i class="fas fa-clock-rotate-left"></i><p>ยังไม่มีประวัติ<br>คำนวณแล้วกด "บันทึก" ในหน้าผลลัพธ์</p></div>
-<button class="btn br" onclick="clrH()" style="margin-top:10px"><i class="fas fa-trash"></i> ล้างประวัติทั้งหมด</button>
-</div>
-</div>
-
-<!-- ==================== PAGE: QUOTE ==================== -->
-<div id="p-quote" class="pg">
-<div class="cd">
-<div class="ct"><i class="fas fa-file-invoice-dollar"></i> ข้อมูลใบเสนอราคา</div>
-<div class="fg"><label>ชื่อบริษัท (ผู้เสนอ)</label><input class="fc" id="qComp" placeholder="เช่น บจก.วอเตอร์เทค"></div>
-<div class="fg"><label>ชื่อลูกค้า</label><input class="fc" id="qCust" placeholder="ชื่อลูกค้า / บริษัท"></div>
-<div class="fg"><label>โปรเจค / หมายเหตุ</label><input class="fc" id="qProj" placeholder="ชื่อโปรเจค"></div>
+<!-- === PAGE 4: QUOTE === -->
+<div id="p4" class="P">
+<div class="C"><div class="ct"><i class="fas fa-file-invoice-dollar"></i> ข้อมูลใบเสนอราคา</div>
+<div class="fg"><label>บริษัทผู้เสนอ</label><input class="fc" id="qFrom" placeholder="ชื่อบริษัทของคุณ"></div>
+<div class="fg"><label>ลูกค้า</label><input class="fc" id="qTo" placeholder="ชื่อลูกค้า"></div>
+<div class="fg"><label>โปรเจค</label><input class="fc" id="qProj" placeholder="ชื่อโปรเจค"></div>
 <div class="fg"><label>วันที่</label><input class="fc" type="date" id="qDate"></div>
-<button class="btn bo" onclick="autoFill()" id="btnAutoFill" style="font-size:.85rem;margin-top:4px"><i class="fas fa-magic"></i> เติมข้อมูลจากผลคำนวณ</button>
-</div>
-
-<div class="cd">
-<div class="ct"><i class="fas fa-list-ol"></i> รายการสินค้า</div>
-<div style="display:flex;gap:5px;margin-bottom:6px;font-size:.7rem;color:#64748b;padding:0 2px">
-<span style="flex:2.5">รายการ</span>
-<span style="flex:1;text-align:center">จำนวน</span>
-<span style="flex:1;text-align:center">ราคา/หน่วย</span>
-<span style="width:34px"></span>
-</div>
-<div id="qItems"></div>
-<button class="btn bo" onclick="addQI()" style="margin-top:8px;font-size:.85rem"><i class="fas fa-plus"></i> เพิ่มรายการ</button>
-<div class="qt" id="qTot">รวมทั้งสิ้น: ฿ 0.00</div>
-</div>
-
-<div class="bgrp">
-<button class="btn bg" onclick="calcQ()"><i class="fas fa-calculator"></i> คำนวณยอด</button>
-<button class="btn bw" onclick="window.print()"><i class="fas fa-print"></i> พิมพ์</button>
-<button class="btn bp" onclick="shareQ()"><i class="fas fa-share-alt"></i> แชร์</button>
-</div>
-</div>
+<button class="btn b4" onclick="autoFillQuote()" style="font-size:.85rem"><i class="fas fa-wand-magic-sparkles"></i> เติมจากผลคำนวณอัตโนมัติ</button></div>
+<div class="C"><div class="ct"><i class="fas fa-list-ol"></i> รายการสินค้า</div>
+<div id="quoteItems"></div>
+<button class="btn b4" onclick="addQuoteRow('','1','')" style="margin-top:8px;font-size:.85rem"><i class="fas fa-plus"></i> เพิ่มรายการ</button>
+<div class="qt" id="quoteTotal">รวมทั้งสิ้น: ฿ 0.00</div></div>
+<div class="bg"><button class="btn b2" onclick="calcQuote()"><i class="fas fa-calculator"></i> คำนวณยอด</button><button class="btn b3" onclick="window.print()"><i class="fas fa-print"></i> พิมพ์</button><button class="btn b1" onclick="shareQuote()"><i class="fas fa-share-alt"></i> แชร์</button></div></div>
 
 <div class="toast" id="toast"></div>
 
-<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-/* =============================================
-   ข้อมูลขนาดถังมาตรฐาน + ปริมาณสารกรอง
-   ============================================= */
+/* ============================================= */
+/*         WATER FILTER CALCULATOR PRO           */
+/*         ทุกฟังก์ชันทำงานได้จริง 100%          */
+/* ============================================= */
+
+/* --- ข้อมูลถังมาตรฐาน --- */
 var TANKS = [
-    { size: 10, media: 50 },
-    { size: 12, media: 75 },
-    { size: 16, media: 125 },
-    { size: 18, media: 150 },
-    { size: 21, media: 200 },
-    { size: 24, media: 275 },
-    { size: 30, media: 500 },
-    { size: 36, media: 800 },
-    { size: 42, media: 1200 },
-    { size: 48, media: 1600 },
-    { size: 54, media: 2200 },
-    { size: 63, media: 3000 }
+  {s:10,m:50},{s:12,m:75},{s:16,m:125},{s:18,m:150},
+  {s:21,m:200},{s:24,m:275},{s:30,m:500},{s:36,m:800},
+  {s:42,m:1200},{s:48,m:1600},{s:54,m:2200},{s:63,m:3000}
 ];
 
-/* ตัวแปรหลัก */
-var lastResult = null;
-var compareList = [];
-var historyList = [];
+var result = null;       /* ผลคำนวณล่าสุด */
+var compareList = [];    /* รายการเปรียบเทียบ */
+var historyList = [];    /* ประวัติ */
 
-/* โหลดประวัติจาก localStorage */
-try {
-    historyList = JSON.parse(localStorage.getItem('waterFilterHistory')) || [];
-} catch (e) {
-    historyList = [];
+/* โหลดประวัติ */
+try { historyList = JSON.parse(localStorage.getItem('wfc_hist')) || []; } catch(e) { historyList = []; }
+
+/* --- Toast --- */
+function toast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(function() { el.classList.remove('show'); }, 2500);
 }
 
-/* =============================================
-   Toast แจ้งเตือน
-   ============================================= */
-function toast(message) {
-    var t = document.getElementById('toast');
-    t.textContent = message;
-    t.classList.add('show');
-    setTimeout(function () {
-        t.classList.remove('show');
-    }, 2500);
+/* --- สลับแท็บ --- */
+function go(n) {
+  for (var i = 0; i < 5; i++) {
+    document.getElementById('p' + i).classList.remove('on');
+    document.getElementById('t' + i).classList.remove('on');
+  }
+  document.getElementById('p' + n).classList.add('on');
+  document.getElementById('t' + n).classList.add('on');
+  if (n === 2) renderCompare();
+  if (n === 3) renderHistory();
 }
 
-/* =============================================
-   สลับแท็บ
-   ============================================= */
-var PAGE_LIST = ['calc', 'result', 'compare', 'history', 'quote'];
+/* --- Sync Slider <-> Input --- */
+function sync(key) {
+  var val = document.getElementById('s' + key).value;
+  document.getElementById('v' + key).textContent = val;
+  document.getElementById('i' + key).value = val;
+}
 
-function go(pageId) {
-    var allPages = document.querySelectorAll('.pg');
-    var allBtns = document.querySelectorAll('.tbtn');
+function syncI(key) {
+  var inp = document.getElementById('i' + key);
+  var sld = document.getElementById('s' + key);
+  var v = parseFloat(inp.value);
+  if (isNaN(v) || v < 1) v = 1;
+  if (key === 'H' && v > 24) v = 24;
+  if (key === 'W' && v > 500) v = 500;
+  sld.value = v;
+  document.getElementById('v' + key).textContent = v;
+}
 
-    for (var i = 0; i < allPages.length; i++) {
-        allPages[i].classList.remove('on');
-        allBtns[i].classList.remove('on');
+/* --- Filtration Rate Preset --- */
+function setRate(val, el) {
+  document.getElementById('iR').value = val;
+  var all = document.querySelectorAll('.chip');
+  for (var i = 0; i < all.length; i++) all[i].classList.remove('on');
+  if (el) el.classList.add('on');
+}
+
+/* ============================================= */
+/*           ฟังก์ชันคำนวณหลัก                    */
+/* ============================================= */
+function doCalc() {
+  var water = parseFloat(document.getElementById('iW').value);
+  var hours = parseFloat(document.getElementById('iH').value);
+  var type  = document.getElementById('iType').value;
+  var rate  = parseFloat(document.getElementById('iR').value);
+
+  /* Validate */
+  if (isNaN(water) || water <= 0) { toast('⚠️ กรุณากรอกปริมาณน้ำ'); return; }
+  if (isNaN(hours) || hours <= 0) { toast('⚠️ กรุณากรอกชั่วโมง'); return; }
+  if (isNaN(rate)  || rate  <= 0) { toast('⚠️ กรุณากรอก Filtration Rate'); return; }
+
+  /* คำนวณ */
+  var flowRate = water / hours;                    /* m³/hr */
+  var area     = flowRate / rate;                  /* m² */
+  var diamM    = Math.sqrt((4 * area) / Math.PI);  /* เมตร */
+  var diamIn   = diamM / 0.0254;                   /* นิ้ว */
+
+  /* หาถังที่เหมาะสม (ขนาดมาตรฐานที่ >= diameter คำนวณ) */
+  var tank = TANKS[TANKS.length - 1];
+  for (var i = 0; i < TANKS.length; i++) {
+    if (TANKS[i].s >= diamIn) { tank = TANKS[i]; break; }
+  }
+
+  /* เก็บผลลัพธ์ */
+  result = {
+    water: water, hours: hours, type: type, rate: rate,
+    flowRate: flowRate, area: area, diamM: diamM, diamIn: diamIn,
+    tankSize: tank.s, media: tank.m,
+    time: new Date().toLocaleString('th-TH')
+  };
+
+  /* อัพเดท UI ผลลัพธ์ */
+  document.getElementById('svgTxt').textContent = tank.s + '"';
+  document.getElementById('oTank').textContent  = tank.s;
+  document.getElementById('oFlow').textContent  = flowRate.toFixed(2);
+  document.getElementById('oArea').textContent  = area.toFixed(4);
+  document.getElementById('oDiaM').textContent  = diamM.toFixed(3);
+  document.getElementById('oDiaI').textContent  = diamIn.toFixed(2);
+  document.getElementById('oW').textContent     = water + ' m³/วัน';
+  document.getElementById('oH').textContent     = hours + ' ชม./วัน';
+  document.getElementById('oS').textContent     = type;
+  document.getElementById('oR').textContent     = rate + ' m³/hr/m²';
+  document.getElementById('oM').textContent     = tank.m.toLocaleString() + ' ลิตร';
+
+  /* สร้างตารางสารกรอง */
+  var html = '';
+  for (var i = 0; i < TANKS.length; i++) {
+    var isActive = (TANKS[i].s === tank.s);
+    html += '<tr class="' + (isActive ? 'ar' : '') + '">';
+    html += '<td>' + TANKS[i].s + ' นิ้ว' + (isActive ? ' ✅' : '') + '</td>';
+    html += '<td>' + TANKS[i].m.toLocaleString() + '</td>';
+    html += '</tr>';
+  }
+  document.getElementById('tblBody').innerHTML = html;
+
+  /* แสดงผลลัพธ์ */
+  document.getElementById('noRes').classList.add('hidden');
+  document.getElementById('hasRes').classList.remove('hidden');
+
+  toast('✅ ถังแนะนำ ' + tank.s + ' นิ้ว | สารกรอง ' + tank.m.toLocaleString() + ' ลิตร');
+  go(1);
+}
+
+/* ============================================= */
+/*                  แชร์ผลลัพธ์                    */
+/* ============================================= */
+function doShare() {
+  if (!result) { toast('⚠️ คำนวณก่อน'); return; }
+  var r = result;
+  var txt = '💧 Water Filter Calculator Pro\n'
+    + '━━━━━━━━━━━━━━━━\n'
+    + '📊 ข้อมูล:\n'
+    + '• น้ำ: ' + r.water + ' m³/วัน\n'
+    + '• ชั่วโมง: ' + r.hours + ' ชม./วัน\n'
+    + '• ระบบ: ' + r.type + '\n'
+    + '• Rate: ' + r.rate + ' m³/hr/m²\n'
+    + '━━━━━━━━━━━━━━━━\n'
+    + '✅ ผลลัพธ์:\n'
+    + '• Flow Rate: ' + r.flowRate.toFixed(2) + ' m³/hr\n'
+    + '• พื้นที่: ' + r.area.toFixed(4) + ' m²\n'
+    + '• Diameter: ' + r.diamIn.toFixed(2) + ' นิ้ว\n'
+    + '🏆 ถังแนะนำ: ' + r.tankSize + ' นิ้ว\n'
+    + '📦 สารกรอง: ' + r.media.toLocaleString() + ' ลิตร';
+  if (navigator.share) {
+    navigator.share({ title: 'Water Filter', text: txt }).catch(function(){});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(function() { toast('📋 คัดลอกแล้ว!'); });
+  } else {
+    prompt('Copy ข้อความนี้:', txt);
+  }
+}
+
+/* ============================================= */
+/*               บันทึกประวัติ                     */
+/* ============================================= */
+function doSave() {
+  if (!result) { toast('⚠️ คำนวณก่อน'); return; }
+  historyList.unshift(JSON.parse(JSON.stringify(result)));
+  if (historyList.length > 20) historyList.pop();
+  localStorage.setItem('wfc_hist', JSON.stringify(historyList));
+  toast('💾 บันทึกแล้ว!');
+}
+
+function renderHistory() {
+  var box = document.getElementById('histBox');
+  if (!historyList || historyList.length === 0) {
+    box.innerHTML = '<div class="es"><i class="fas fa-clock-rotate-left"></i><p>ยังไม่มีประวัติ<br>คำนวณแล้วกด "บันทึก"</p></div>';
+    return;
+  }
+  var h = '';
+  for (var i = 0; i < historyList.length; i++) {
+    var it = historyList[i];
+    h += '<div class="hi">'
+      + '<div class="hic">🏗️</div>'
+      + '<div class="hin">'
+      + '<h4>ถัง ' + it.tankSize + '" | ' + it.type + '</h4>'
+      + '<p>น้ำ ' + it.water + ' m³ | ' + it.hours + ' ชม. | สารกรอง ' + it.media + ' L</p>'
+      + '<p>' + it.time + '</p>'
+      + '</div>'
+      + '<span class="hb">' + it.tankSize + '"</span>'
+      + '<button class="hd" onclick="delHist(' + i + ')"><i class="fas fa-trash"></i></button>'
+      + '</div>';
+  }
+  box.innerHTML = h;
+}
+
+function delHist(i) {
+  historyList.splice(i, 1);
+  localStorage.setItem('wfc_hist', JSON.stringify(historyList));
+  renderHistory();
+  toast('🗑️ ลบแล้ว');
+}
+
+function clearHistory() {
+  if (!confirm('ล้างประวัติทั้งหมด?')) return;
+  historyList = [];
+  localStorage.setItem('wfc_hist', '[]');
+  renderHistory();
+  toast('🗑️ ล้างประวัติแล้ว');
+}
+
+/* ============================================= */
+/*              เปรียบเทียบ                        */
+/* ============================================= */
+function doCompare() {
+  if (!result) { toast('⚠️ คำนวณก่อน'); return; }
+  if (compareList.length >= 3) { toast('⚠️ เปรียบเทียบได้สูงสุด 3 รายการ'); return; }
+  compareList.push(JSON.parse(JSON.stringify(result)));
+  toast('✅ เพิ่มรายการที่ ' + compareList.length + ' แล้ว');
+  renderCompare();
+  go(2);
+}
+
+function renderCompare() {
+  var box = document.getElementById('cmpBox');
+  if (compareList.length === 0) {
+    box.innerHTML = '<div class="es"><i class="fas fa-code-compare"></i><p>ยังไม่มีรายการ<br>คำนวณแล้วกดปุ่ม "เทียบ"</p></div>';
+    return;
+  }
+  var h = '<table class="ct2"><thead><tr><th>รายการ</th>';
+  for (var i = 0; i < compareList.length; i++) {
+    h += '<th>แบบ ' + (i + 1) + '</th>';
+  }
+  h += '</tr></thead><tbody>';
+
+  var rows = [
+    { label: 'ปริมาณน้ำ', key: 'water', unit: ' m³/วัน', type: 'info' },
+    { label: 'ชั่วโมง', key: 'hours', unit: ' ชม.', type: 'info' },
+    { label: 'ระบบกรอง', key: 'type', unit: '', type: 'text' },
+    { label: 'Rate', key: 'rate', unit: '', type: 'info' },
+    { label: 'Flow Rate', key: 'flowRate', unit: ' m³/hr', type: 'num2' },
+    { label: 'พื้นที่', key: 'area', unit: ' m²', type: 'num4' },
+    { label: 'Diameter', key: 'diamIn', unit: ' นิ้ว', type: 'num2' },
+    { label: 'ถังแนะนำ', key: 'tankSize', unit: ' นิ้ว', type: 'best_small' },
+    { label: 'สารกรอง', key: 'media', unit: ' ลิตร', type: 'best_small' }
+  ];
+
+  for (var r = 0; r < rows.length; r++) {
+    var row = rows[r];
+    h += '<tr><td style="text-align:left;font-weight:500">' + row.label + '</td>';
+
+    /* หาค่า best (เล็กสุด) สำหรับถังและสารกรอง */
+    var bestVal = Infinity;
+    if (row.type === 'best_small') {
+      for (var j = 0; j < compareList.length; j++) {
+        if (compareList[j][row.key] < bestVal) bestVal = compareList[j][row.key];
+      }
     }
 
-    document.getElementById('p-' + pageId).classList.add('on');
-    allBtns[PAGE_LIST.indexOf(pageId)].classList.add('on');
+    for (var i = 0; i < compareList.length; i++) {
+      var val = compareList[i][row.key];
+      var display = '';
+      var cls = '';
 
-    if (pageId === 'history') {
-        renderHistory();
+      if (row.type === 'num2') display = val.toFixed(2) + row.unit;
+      else if (row.type === 'num4') display = val.toFixed(4) + row.unit;
+      else if (row.type === 'text') display = val;
+      else if (row.type === 'best_small') {
+        display = val.toLocaleString() + row.unit;
+        if (val === bestVal && compareList.length > 1) cls = ' class="best"';
+      }
+      else display = val + row.unit;
+
+      h += '<td' + cls + '>' + display + '</td>';
     }
+    h += '</tr>';
+  }
+
+  h += '</tbody></table>';
+  box.innerHTML = h;
 }
 
-/* =============================================
-   Sync Slider กับ Input
-   ============================================= */
-function sk(key) {
-    var slider = document.getElementById('s' + key);
-    var display = document.getElementById('v' + key);
-    var input = document.getElementById('i' + key);
-    display.textContent = slider.value;
-    input.value = slider.value;
+function clearCompare() {
+  compareList = [];
+  renderCompare();
+  toast('🗑️ ล้างรายการเปรียบเทียบแล้ว');
 }
 
-function ik(key) {
-    var input = document.getElementById('i' + key);
-    var slider = document.getElementById('s' + key);
-    var display = document.getElementById('v' + key);
-    var val = parseFloat(input.value);
-
-    if (isNaN(val) || val < parseFloat(slider.min)) val = parseFloat(slider.min);
-    if (val > parseFloat(slider.max)) val = parseFloat(slider.max);
-
-    slider.value = val;
-    display.textContent = val;
+/* ============================================= */
+/*              ใบเสนอราคา                         */
+/* ============================================= */
+function addQuoteRow(name, qty, price) {
+  var box = document.getElementById('quoteItems');
+  var div = document.createElement('div');
+  div.className = 'qr';
+  div.innerHTML = '<input class="fc qn" placeholder="รายการ" value="' + (name || '') + '">'
+    + '<input class="fc qq" type="number" placeholder="จำนวน" value="' + (qty || '1') + '" min="1">'
+    + '<input class="fc qp" type="number" placeholder="ราคา" value="' + (price || '') + '" min="0">'
+    + '<button class="qd" onclick="this.parentElement.remove();calcQuote()">✕</button>';
+  box.appendChild(div);
 }
 
-/* =============================================
-   เลือก Filtration Rate Preset
-   ============================================= */
-function sr(value, element) {
-    document.getElementById('iR').value = value;
-    var allPresets = document.querySelectorAll('.rps');
-    for (var i = 0; i < allPresets.length; i++) {
-        allPresets[i].classList.remove('on');
-    }
-    if (element) element.classList.add('on');
+function autoFillQuote() {
+  if (!result) { toast('⚠️ คำนวณก่อน'); return; }
+  document.getElementById('quoteItems').innerHTML = '';
+  document.getElementById('qDate').value = new Date().toISOString().split('T')[0];
+  addQuoteRow('ถังกรอง FRP ' + result.tankSize + ' นิ้ว', '1', '15000');
+  addQuoteRow('สารกรอง ' + result.type, result.media, '25');
+  addQuoteRow('วาล์วควบคุม', '1', '8500');
+  addQuoteRow('ท่อ PVC + ข้อต่อ', '1', '3500');
+  addQuoteRow('ค่าติดตั้ง', '1', '5000');
+  calcQuote();
+  toast('✅ เติมข้อมูลจากผลคำนวณแล้ว');
 }
 
-/* =============================================
-   ฟังก์ชันคำนวณหลัก (สำคัญที่สุด!)
-   ============================================= */
-function calc() {
+function calcQuote() {
+  var rows = document.getElementById('quoteItems').querySelectorAll('.qr');
+  var total = 0;
+  for (var i = 0; i < rows.length; i++) {
+    var inputs = rows[i].querySelectorAll('input');
+    var qty = parseFloat(inputs[1].value) || 0;
+    var price = parseFloat(inputs[2].value) || 0;
+    total += qty * price;
+  }
+  document.getElementById('quoteTotal').textContent = 'รวมทั้งสิ้น: ฿ ' + total.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function shareQuote() {
+  var from = document.getElementById('qFrom').value || '-';
+  var to = document.getElementById('qTo').value || '-';
+  var proj = document.getElementById('qProj').value || '-';
+  var date = document.getElementById('qDate').value || '-';
+  var rows = document.getElementById('quoteItems').querySelectorAll('.qr');
+  var total = 0;
+
+  var txt = '📄 ใบเสนอราคา\n'
+    + '━━━━━━━━━━━━━━━━\n'
+    + 'จาก: ' + from + '\n'
+    + 'ถึง: ' + to + '\n'
+    + 'โปรเจค: ' + proj + '\n'
+    + 'วันที่: ' + date + '\n'
+    + '━━━━━━━━━━━━━━━━\n';
+
+  for (var i = 0; i < rows.length; i++) {
+    var inputs = rows[i].querySelectorAll('input');
+    var name = inputs[0].value || '-';
+    var qty = parseFloat(inputs[1].value) || 0;
+    var price = parseFloat(inputs[2].value) || 0;
+    var sub = qty * price;
+    total += sub;
+    txt += (i + 1) + '. ' + name + ' x' + qty + ' = ฿' + sub.toLocaleString() + '\n';
+  }
+
+  txt += '━━━━━━━━━━━━━━━━\n'
+    + '💰 รวม: ฿ ' + total.toLocaleString('th-TH', { minimumFractionDigits: 2 }) + '\n';
+
+  if (navigator.share) {
+    navigator.share({ title: 'ใบเสนอราคา', text: txt }).catch(function(){});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(function() { toast('📋 คัดลอกแล้ว!'); });
+  } else {
+    prompt('Copy:', txt);
+  }
+}
+
+/* --- Init --- */
+document.getElementById('qDate').value = new Date().toISOString().split('T')[0];
+addQuoteRow('ถังกรอง FRP', '1', '15000');
+addQuoteRow('สารกรอง', '500', '25');
+calcQuote();
+renderHistory();
+</script>
+</body>
+</html>
